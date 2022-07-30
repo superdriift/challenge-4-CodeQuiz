@@ -1,4 +1,57 @@
+:root {
+    --buttoncolor:#f0f8ff;
+    --hovercolor: #cdf6e8;
+}
+
+
+
 header {
     text-align: center;
 }
+p {
+    font-weight: 600;
+}
 
+button {
+    height: 55px;
+    width: 110px;
+    font-size: larger;
+    border-radius: 10px;
+    padding: 10px
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h2 {
+    text-align: end;
+}
+
+h3 {
+    font-size: 16pt;
+}
+
+ol {
+    list-style-type: none;
+}
+
+li {
+    background-color: var(--buttoncolor);
+    padding: 7px;
+    width: 25%;
+    margin: 7px;
+    border-radius: 10px;
+    font-size: 14pt;
+}
+
+li:hover {
+    background-color: var(--hovercolor);
+    cursor: pointer;
+}
+
+
+
+#note {
+    font-style: italic;
+}
