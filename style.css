@@ -50,7 +50,9 @@ li:hover {
     cursor: pointer;
 }
 
-
+.scoretitle {
+    text-align: center;
+}
 
 #note {
     font-style: italic;

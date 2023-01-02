@@ -1,6 +1,7 @@
 // ** VARIABLES ** //
 var button = document.querySelector("#button");
 var timer = 120;
+var clock;
 var timerEl = document.querySelector('#timer');
 var liEl = document.querySelectorAll('li');
 var questions = [
@@ -30,7 +31,7 @@ var li3El = document.createElement('li');
 // ** FUNCTIONS ** //
 // START Timer
 function starttimer() {
-    setInterval(todo, 1000)
+    clock = setInterval(todo, 1000)
 }
 // Timer- setinterval function
 function todo() {
@@ -84,45 +85,48 @@ function checkanswer(event) {
 function cutit(event) {
     console.log(event.target.innerHTML)
     if (currentquestion === correctanswers.length) {
-        clearInterval(starttimer);
-        var initials = prompt('Would you like to save your score? input your name below.');
+        clearInterval(clock);
+        //console.log(convertedscore);
+        var main = document.querySelector('#main');
+        var scoretitle = document.createElement('h2');
+        scoretitle.innerHTML = 'High Scores';
+        var scoreEl = document.createElement('div');
+        var trackerlist = document.createElement('ol');
+        var scorelist = document.createElement('li');
+        scoreEl.appendChild(scoretitle);
+        scoreEl.appendChild(trackerlist);
+        main.appendChild(scoreEl);
+        scoretitle.setAttribute('class','scoretitle')
+    
+        var initials = prompt('Would you like to save your score? input your initials below.');
+
+        
         //Save Statistics into the local storage. add local storage display to #main
-        if (initials !== '') {
-            
-            console.log(initials)
+        var myScore = {
+            'Initials': initials,
+            'Score': timer,
         }
-
-    }
+        var convertedscore = JSON.stringify(myScore);
+        var simples = JSON.parse(convertedscore);
+        if (initials !== '') {
+            console.log(initials);
+            localStorage.setItem('myScore', convertedscore);
+            console.log(localStorage);
+            trackerlist.appendChild(scorelist);
+            // clearInterval(starttimer)
+            //location.reload();
+        } else if (initials === null) {
+            //location.reload()
+            // clearInterval(starttimer)
+        }
+        else {
+            alert('Please input initials!');
+            prompt('Please input initials below');
+            //location.reload()
+            // clearInterval(starttimer)
+        }
+    } 
 }
-
-
-
-// // Make QBOX 
-// //function makeqbox() {
-//     olEl.appendChild(li0El);
-//     olEl.appendChild(li1El);
-//     olEl.appendChild(li2El);
-//     olEl.appendChild(li3El);
-//     qboxEl.appendChild(qslotEl);
-//     qboxEl.appendChild(olEl);
-//     main.appendChild(qboxEl);
-// }
-
-    // var li0El = document.createElement('li');
-    // var li1El = document.createElement('li');
-    // var li2El = document.createElement('li');
-    // var li3El = document.createElement('li');
-    // qslotEl.textContent = questions[currentquestion][0]
-    // li0El.textContent = questions[currentquestion][1]
-    // li1El.textContent = questions[currentquestion][2]
-    // li2El.textContent = questions[currentquestion][3]
-    // li3El.textContent = questions[currentquestion][4]
-    // olEl.appendChild(li0El);
-    // olEl.appendChild(li1El);
-    // olEl.appendChild(li2El);
-    // olEl.appendChild(li3El);
-
-
 
 // ** ACTION ** // 
 // On click start, start timer and add 'qbox' to main
